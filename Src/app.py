@@ -1,4 +1,4 @@
-“””
+"""
 Streamlit app: PCB Defect Detection (YOLOv8 + Autoencoder Anomaly Detection)
 
 User uploads a PCB image. App runs:
@@ -15,8 +15,7 @@ streamlit run app.py
 NOTE: If model weight files are not found (models/ folder empty because
 training hasn’t been run yet), the app runs in DEMO MODE — it still shows
 the UI and pipeline, but with a clear on-screen notice that results are
-placeholders until real trained weights are supplied.
-“””
+placeholders until real trained weights are supplied."""
 
 import sys
 from pathlib import Path
