@@ -183,3 +183,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+st.markdown("---")
+st.markdown(
+    "Built by **Rahul Sah** · "
+    "[GitHub](https://github.com/matrixrahulML) · "
+    "[Portfolio](https://matrixrahul.netlify.app)"
+)
