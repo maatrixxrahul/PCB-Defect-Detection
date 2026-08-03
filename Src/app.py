@@ -30,9 +30,9 @@ from inspector import PCBInspector, InspectionResult
 st.set_page_config(page_title="PCB Defect Detection", page_icon="🔍", layout="wide")
 
 MODELS_DIR = Path(**file**).parent.parent / "models"
-YOLO_WEIGHTS = MODELS_DIR / “yolo_pcb_best.pt\"
-AE_WEIGHTS = MODELS_DIR / “autoencoder_best.pt"
-THRESHOLD_JSON = MODELS_DIR / “threshold.json"
+YOLO_WEIGHTS = MODELS_DIR / "yolo_pcb_best.pt\"
+AE_WEIGHTS = MODELS_DIR / "autoencoder_best.pt"
+THRESHOLD_JSON = MODELS_DIR / "threshold.json"
 
 DEFECT_COLORS = {
 "missing_hole": "#FF3B3B",
@@ -61,12 +61,12 @@ draw.rectangle([x1, y1, x2, y2], outline=color, width=3)
 label = f"{det.class_name} {det.confidence:.2f}"
 text_bbox = draw.textbbox((x1, max(0, y1 - 18)), label)
 draw.rectangle(text_bbox, fill=color)
-draw.text((x1, max(0, y1 - 18)), label, fill=“black”)
+draw.text((x1, max(0, y1 - 18)), label, fill="black")
 return img
 
 def heatmap_overlay(image: Image.Image, heatmap: np.ndarray, alpha: float = 0.45) -> Image.Image:
 """Overlay the anomaly heatmap on the original image using a red-hot colormap."""
-base = image.convert(“RGB”).resize((heatmap.shape[1], heatmap.shape[0]))
+base = image.convert("RGB").resize((heatmap.shape[1], heatmap.shape[0]))
 base_arr = np.array(base).astype(float)
 
 ```
