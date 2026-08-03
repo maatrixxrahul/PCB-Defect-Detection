@@ -27,20 +27,20 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, str(Path(**file**).parent))
 from inspector import PCBInspector, InspectionResult
 
-st.set_page_config(page_title=“PCB Defect Detection”, page_icon=“🔍”, layout=“wide”)
+st.set_page_config(page_title="PCB Defect Detection", page_icon="🔍", layout="wide")
 
-MODELS_DIR = Path(**file**).parent.parent / “models”
-YOLO_WEIGHTS = MODELS_DIR / “yolo_pcb_best.pt”
-AE_WEIGHTS = MODELS_DIR / “autoencoder_best.pt”
-THRESHOLD_JSON = MODELS_DIR / “threshold.json”
+MODELS_DIR = Path(**file**).parent.parent / "models"
+YOLO_WEIGHTS = MODELS_DIR / “yolo_pcb_best.pt\"
+AE_WEIGHTS = MODELS_DIR / “autoencoder_best.pt"
+THRESHOLD_JSON = MODELS_DIR / “threshold.json"
 
 DEFECT_COLORS = {
-“missing_hole”: “#FF3B3B”,
-“mouse_bite”: “#FF9F1C”,
-“open_circuit”: “#FFD23F”,
-“short”: “#E71D36”,
-“spur”: “#8E44AD”,
-“spurious_copper”: “#3A86FF”,
+"missing_hole": "#FF3B3B",
+"mouse_bite": "#FF9F1C",
+"open_circuit": "#FFD23F",
+"short": "#E71D36",
+"spur": "#8E44AD",
+"spurious_copper": "#3A86FF",
 }
 
 @st.cache_resource
@@ -52,20 +52,20 @@ threshold_json_path=str(THRESHOLD_JSON) if THRESHOLD_JSON.exists() else None,
 )
 
 def draw_boxes(image: Image.Image, detections) -> Image.Image:
-img = image.convert(“RGB”).copy()
+img = image.convert("RGB").copy()
 draw = ImageDraw.Draw(img)
 for det in detections:
 x1, y1, x2, y2 = det.box_xyxy
-color = DEFECT_COLORS.get(det.class_name, “#00FF00”)
+color = DEFECT_COLORS.get(det.class_name, "#00FF00")
 draw.rectangle([x1, y1, x2, y2], outline=color, width=3)
-label = f”{det.class_name} {det.confidence:.2f}”
+label = f"{det.class_name} {det.confidence:.2f}"
 text_bbox = draw.textbbox((x1, max(0, y1 - 18)), label)
 draw.rectangle(text_bbox, fill=color)
 draw.text((x1, max(0, y1 - 18)), label, fill=“black”)
 return img
 
 def heatmap_overlay(image: Image.Image, heatmap: np.ndarray, alpha: float = 0.45) -> Image.Image:
-“”“Overlay the anomaly heatmap on the original image using a red-hot colormap.”””
+"""Overlay the anomaly heatmap on the original image using a red-hot colormap."""
 base = image.convert(“RGB”).resize((heatmap.shape[1], heatmap.shape[0]))
 base_arr = np.array(base).astype(float)
 
@@ -84,10 +84,10 @@ return Image.fromarray(blended)
 def render_verdict_banner(result: InspectionResult, demo_mode: bool):
 if demo_mode:
 st.warning(
-“⚠️ DEMO MODE — model weights not found in `models/`. “
-“Showing pipeline with an untrained/placeholder response. “
-“Train the models (see `src/train_yolo.py` and `src/train_autoencoder.py`) “
-“and drop weights into `models/` to get real results.”
+"⚠️ DEMO MODE — model weights not found in `models/`. "
+"Showing pipeline with an untrained/placeholder response. "
+"Train the models (see `src/train_yolo.py` and `src/train_autoencoder.py`) "
+"and drop weights into `models/` to get real results."
 )
 
 ```
@@ -103,11 +103,11 @@ col3.metric("Anomaly Threshold", f"{result.anomaly_threshold:.4f}" if result.ano
 ```
 
 def main():
-st.title(“🔍 PCB Defect Detection”)
+st.title("🔍 PCB Defect Detection")
 st.caption(
-“Upload a PCB image. The app runs **YOLOv8 object detection** (known defect types) “
-“and a **convolutional autoencoder anomaly detector** (catches unusual/unseen regions) “
-“side by side.”
+"Upload a PCB image. The app runs **YOLOv8 object detection** (known defect types) "
+"and a **convolutional autoencoder anomaly detector** (catches unusual/unseen regions) "
+"side by side."
 )
 
 ```
@@ -181,5 +181,5 @@ st.caption(
 )
 ```
 
-if **name** == “**main**”:
+if **name** == "**main**":
 main()
